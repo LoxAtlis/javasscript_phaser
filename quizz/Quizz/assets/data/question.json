@@ -1,0 +1,54 @@
+{
+    "questions": [
+        {
+            "title": "Quelle citation est inscrite à l'entrée des Abysses ?",
+            "answers": ["La lumière fera place à l'obscurité.\n Nous n'entrerons plus dans cet endroit", "Aucun sacrifice n'est trop grand", "Notre Vaisseau pur a fait son ascension.\n Il ne reste au delà que le refus et\n les regrets de sa création"],
+            "goodAnswerIndex": 2
+        },
+        {
+            "title": "Quel boss n'est pas tué à la fin de son combat ?",
+            "answers": ["Défenseur Bousier", "Chevalier de la Ruche", "Maître de l'Âme"],
+            "goodAnswerIndex": 1
+        },
+        {
+            "title": "Comment se nomment les 3 frères d'aiguillon ?",
+            "answers": ["Cloth, Quirrel et Tuk", "Sheo, Tiso et Miro", "Oro, Mato et Sheo"],
+            "goodAnswerIndex": 2
+        },
+        {
+            "title": "Quel message obtient-on si l'on frappe le cadavre \n du Roi Pâle avec l'aiguillon des rêves ?",
+            "answers": ["Pas de sacrifices trop grands", "Mais personne ne vient...", "Tu es le vaisseau"],
+            "goodAnswerIndex": 0
+        },
+        {
+            "title": "De qui Hornet est la fille ?",
+            "answers": ["La Dame Blanche", "Herra la Bête", "Monomon l'érudi"],
+            "goodAnswerIndex": 1
+        },
+        {
+            "title": "Où obtient-on le pouvoir de nager dans l'acide ?",
+            "answers": ["Au Bosquet d'Isma", "Dans les Cavernes Nocives", "Aux Frontières du Royaume"],
+            "goodAnswerIndex": 0
+        },
+        {
+            "title": "De quoi est constituer le colliser des fou ?",
+            "answers": ["de cadavres d'insectes", "de la carcase du Wyrm", "de rocher"],
+            "goodAnswerIndex": 1
+        },
+        {
+            "title": "Où vas le forgeron si on l'épargne ?",
+            "answers": ["déprimer dans les voies d’eau Royales", "rencontrer Sly", "redécouvrire l'art avec Sheo"],
+            "goodAnswerIndex": 2
+        },
+        {
+            "title": "De quoi est fait l'ombre quand notre personnage meurt ?",
+            "answers": ["de vide", "de ténèbre", "d'âme"],
+            "goodAnswerIndex": 0
+        },
+        {
+            "title": "Qu'est-ce qui est la cause de l'infection ?",
+            "answers": ["Le Hollow Kignt", "un mal qui vient de l'exterieur d'Hallownest", "Radiance"],
+            "goodAnswerIndex": 2
+        }
+  ]
+}
