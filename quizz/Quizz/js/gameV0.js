@@ -20,6 +20,7 @@ let answersT = [];
 let questionT;
 let answersNum = 3;
 let barreTitreIm;
+let starImage = [];
 
 let quizz ;//= JSON.parse(quizzString);
 let quizzString ;//= " { } "
@@ -56,6 +57,7 @@ function preload()
     this.load.image('barre','./assets/Sprites/Label4.png');
     this.load.image('barreTitre','./assets/Sprites/Label1.png');
     this.load.json('questions', './assets/data/question.json'); 
+    this.load.image('star','./assets/Sprites/Star.png');
 
 }
 
@@ -93,7 +95,14 @@ function create()
    // myText = this.add.text(140, 342, "Aucun sacrifice n'est trop grand",{ fontFamily: 'Consolas', fontSize : 15, color : '#550f8f' }); 
     //myText = this.add.text(140, 422, "Notre Vaisseau pur a fait son ascension.\n Il ne reste au delà que le refus et \nles regrets de sa création",{ fontFamily: 'Consolas', fontSize : 15, color : '#550f8f' }); 
 
-
+     
+    for (let id = 0; id < 10; id++)
+    { 
+        starImage[id] = this.add.image(30 + i * 60, 600, 'star'); 
+        starImage[id].setScale(0.3); 
+        starImage[id].alpha = 0.3; 
+        starImage[id].setVisible(false); 
+    }
 
        
 }
@@ -109,6 +118,7 @@ function check(answerIndex)
     else alert("faux");
     
 }
+
 
 
 
