@@ -34,31 +34,6 @@ let goodAnswerSound;
 let wrongAnswerSound;
 let quizz ;//= JSON.parse(quizzString);
 let quizzString ;//= " { } "
-/*let quizz = 
-{ "questions":
-    [
-     { "Comment se nomment les 3 frères d aiguillon ?",
-      "answer": 
-        [
-            "Cloth, Quirrel et Tuk",
-            "Sheo, Tiso et Miro",
-            "Oro, Mato et Sheo"
-        ],
-            "goodAnswerIndex" : 2 
-     },
-     {"title": "Quel boss n est pas tué à la fin de son combat ?",
-     "answer": 
-        [
-            "Défenseur Bousier",
-            "Chevalier de la Ruche",
-            "Maître de l Âme"
-        ],
-            "goodAnswerIndex" : 0
-     }
-    ]
-};
-*/
-
 
 
 function preload()
@@ -134,25 +109,7 @@ function create()
     restartIm.setVisible(false);
 
     goodAnswerSound = this.sound.add('good');
-    wrongAnswerSound = this.sound.add('wrong');
-
-
-
-    //playButton.on("pointerdown");
-    //barreIm = this.add.image(300, 350, 'barre');
-    //barreIm1.setScale(1.3);
-    //barreIm2 = this.add.image(300, 450, 'barre');
-    //barreIm2.setScale(1.3);
-    //barreIm.setScale(0.5);
-    
-    //myText = this.add.text(140, 232, "La lumière fera place à l'obscurité.\n Nous n'entrerons plus dans cet endroit",{ fontFamily: 'Consolas', fontSize : 15, color : '#550f8f' }); 
-   // myText = this.add.text(140, 342, "Aucun sacrifice n'est trop grand",{ fontFamily: 'Consolas', fontSize : 15, color : '#550f8f' }); 
-    //myText = this.add.text(140, 422, "Notre Vaisseau pur a fait son ascension.\n Il ne reste au delà que le refus et \nles regrets de sa création",{ fontFamily: 'Consolas', fontSize : 15, color : '#550f8f' }); 
-
-     
-   
-
-       
+    wrongAnswerSound = this.sound.add('wrong');       
 }
 
 function update()
@@ -173,7 +130,8 @@ function check(answerIndex)
     {
         
         wrongAnswerSound.play();
-        starImage[currentQIndexc].tint = 0xff0000;
+        starImage[currentQIndexc].tint = 0xffa029;
+        starImage[currentQIndexc].alpha = 1;
     }
 
     playButton.setVisible(true);
@@ -185,7 +143,7 @@ function check(answerIndex)
         {
             answersT[i].setColor('#00ff00');
         }
-        else answersT[i].setColor("#ff0000");
+        else answersT[i].setColor("#ffa029");
     }
    
     
@@ -233,6 +191,11 @@ function disGameScreen()
         answersT[i].setVisible(true);
 
     }
+    for(let i=0; i<10; i++)
+    {
+        starImage[i].alpha = 0.5;
+        starImage[i].tint = 0xffffff;
+    }
 }
 
 function disGameOver()
@@ -255,3 +218,11 @@ function disGameOver()
 
 }
 
+function restartGame()
+{
+    currentQIndexc = -1;
+    disnextQ();
+    restartIm.setVisible(false);
+    disGameOver();
+
+}
