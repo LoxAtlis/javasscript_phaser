@@ -105,7 +105,7 @@ function create()
 
     restartIm = this.add.image(300,290,'restart').setInteractive();
     restartIm.setScale(0.5);
-    restartIm.on("pointerdown",disGameOver);
+    restartIm.on("pointerdown",restartGame);
     restartIm.setVisible(false);
 
     goodAnswerSound = this.sound.add('good');
@@ -223,6 +223,6 @@ function restartGame()
     currentQIndexc = -1;
     disnextQ();
     restartIm.setVisible(false);
-    disGameOver();
-
+    disGameScreen();
+    score=0;
 }
