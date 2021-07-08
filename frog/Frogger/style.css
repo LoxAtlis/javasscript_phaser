@@ -1,0 +1,14 @@
+body {
+    background-image : url("./assets/images/FroggerBackground.png")
+}
+
+#title {
+    text-align: center;
+    font-size: x-large;
+    font-family: sans-serif;
+    color: #FFFFFF;
+    margin-top: 20;
+    margin-bottom: 20
+}
+
+
