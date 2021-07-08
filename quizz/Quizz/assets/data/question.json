@@ -49,6 +49,11 @@
             "title": "      Qu'est-ce qui est la cause de l'infection ?",
             "answers": ["Le Hollow Kignt", "un mal qui vient de l'exterieur \n d'Hallownest", "Radiance"],
             "goodAnswerIndex": 2
+        },
+        {
+            "title": " Combien de minerais pâle il y a t'il \n dans le royaume d'Hallownest ?",
+            "answers": ["7", "4", "6"],
+            "goodAnswerIndex": 2
         }
   ]
 }

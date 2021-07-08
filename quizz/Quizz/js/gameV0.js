@@ -64,7 +64,7 @@ function create()
     welcomIm = this.add.image(300, 230, 'welcom');
     welcomIm.setScale(0.8);
     quizT = this.add.text(280, 60,"Quizz",{ fontFamily: 'Georgia', fontSize : 20, color : '#c08aeb' })
-    menueT = this.add.text(120, 160,"Êtres supérieurs, ces mots sont pour vous seul \nPour découvrir ce que contiennent les secrets scellés,\n il faut endurer la punition la plus sévère. ",{ fontFamily: 'Georgia', fontSize : 16, color : '#ffffff' })
+    menueT = this.add.text(120, 160,"Êtres supérieurs, ces mots sont pour vous seul \nPour découvrir ce que contiennent les secrets scellés,\n il faut endurer la punition la plus sévère. ",{ fontFamily: 'Georgia', fontSize : 16, color : '#bcb8ec' })
 
     playOIm = this.add.image(300,290,'playo').setInteractive();
     playOIm.on("pointerdown",disGameScreen);
