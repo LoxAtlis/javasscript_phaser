@@ -64,7 +64,7 @@ function create()
     welcomIm = this.add.image(300, 230, 'welcom');
     welcomIm.setScale(0.8);
     quizT = this.add.text(280, 60,"Quizz",{ fontFamily: 'Georgia', fontSize : 20, color : '#c08aeb' })
-    menueT = this.add.text(120, 160,"Êtres supérieurs, ces mots sont pour vous seul \nPour découvrir ce que contiennent les secrets scellés,\n il faut endurer la punition la plus sévère. ",{ fontFamily: 'Georgia', fontSize : 16, color : '#000000' })
+    menueT = this.add.text(120, 160,"Êtres supérieurs, ces mots sont pour vous seul \nPour découvrir ce que contiennent les secrets scellés,\n il faut endurer la punition la plus sévère. ",{ fontFamily: 'Georgia', fontSize : 16, color : '#ffffff' })
 
     playOIm = this.add.image(300,290,'playo').setInteractive();
     playOIm.on("pointerdown",disGameScreen);
@@ -89,7 +89,7 @@ function create()
         answersT[i] = this.add.text(150, 210 + (i*120), quizz.questions[0].answers[i], {fontFamily: "Georgia", fontSize: 17, color: "#ffffff"});
         answersT[i].setVisible(false);
     }
-    for (let i=0; i<10; i++) 
+    for (let i=0; i<quizz.questions.length; i++) 
     { 
         starImage[i] = this.add.image(30 + i * 60, 600, 'star'); 
         starImage[i].setScale(0.3); 
@@ -203,7 +203,7 @@ function disGameOver()
     welcomIm.setVisible(true);
     quizT.setVisible(true);
     menueT.setVisible(true);
-    menueT.text="vous avez un score de " +score+"/10 \n Presse le bouton pour recommencer";
+    menueT.text="vous avez un score de " +score+"/10 \n Si vous etes pas satisfait de votre score, \n appuyer sur la marque du vide";
     restartIm.setVisible(true);
 
     playButton.setVisible(false);
