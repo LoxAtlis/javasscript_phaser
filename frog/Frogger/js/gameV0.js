@@ -21,6 +21,8 @@ let config = {
 let game = new Phaser.Game(config);
 let frogIm, mumIm;
 let down, up, left, right;
+let haertIm;
+let tweenHeart;
 function init() {
    
 }
@@ -28,8 +30,10 @@ function init() {
 function preload() 
 {
     this.load.image('background', './assets/images/FroggerBackground.png');
-    this.load.image('frog', './assets/images/Frog.png')
-    this.load.image('mum', './assets/images/MumFrog.png')
+    this.load.image('frog', './assets/images/Frog.png');
+    this.load.image('mum', './assets/images/MumFrog.png');
+    this.load.image('heart', './assets/images/heart.png');
+    this.load.image('car', './assets/images/car.png');
 }
 
 function create() 
@@ -38,6 +42,18 @@ function create()
     backgroundImage.setOrigin(0, 0);    
     frogIm = this.add.image(100, 300, 'frog');   
     mumIm = this.add.image(Phaser.Math.Between(0,400),15, 'mum');
+    haertIm = this.add.image(240,160,"heart");
+    haertIm.setScale(0,0);
+    tweenHeart = this.tweens.add({
+        targets: haertIm,
+        scale: 4.0, 
+        duration: 3000, 
+        ease: 'Linear', 
+        yoyo: false,
+        loop: 0,
+        paused: true
+        });
+    carIm = this.add.image(200, 100, 'car');  
    
     down = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.DOWN);
     up = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.UP); 
@@ -71,7 +87,7 @@ function update()
         frogIm.setAngle(90);
     } 
 
-    if(Phaser.Geom.Intersects.RectangleToRectangle(frogIm.getBounds(),mumIm.getBounds() ));
+    if(Phaser.Geom.Intersects.RectangleToRectangle(frogIm.getBounds(),mumIm.getBounds() )) tweenHeart.play();
 
     
 }
