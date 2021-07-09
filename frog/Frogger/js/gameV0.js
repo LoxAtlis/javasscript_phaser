@@ -19,20 +19,19 @@ let config = {
 
 
 let game = new Phaser.Game(config);
-let frogIm, mumIm;
+let frogIm, mumIm,deadF ;
 let down, up, left, right;
 let haertIm;
 let tweenHeart;
 let carIm =[];
-let titleIm;
-let playIm;
+let titleIm,playIm ;
 let onStartScreen = true;
-let minuteur;
-let timer;
-let counter = 60;
+let counter;
+let timer,counterTimer,scoretext;
+let savef;
+let coacsont,smashsont,traficsont;
 
 
-let deadF;
 function init() {
    
 }
@@ -49,6 +48,9 @@ function preload()
     this.load.image('car2', './assets/images/snowCar.png');
     this.load.image('title', './assets/images/TitleScreen.png');
     this.load.image('play', './assets/images/playButton.webp');
+    this.load.audio('coac', './assets/audio/coaac.wav');
+    this.load.audio('smash', './assets/audio/smashed.wav');
+    this.load.audio('trafic', './assets/audio/trafic.wav');
 }
 
 function create() 
@@ -56,8 +58,8 @@ function create()
     backgroundImage = this.add.image(0, 0, 'background'); 
     backgroundImage.setOrigin(0, 0);    
     frogIm = this.add.image(241, 296, 'frog');
-     
-    let mumcase = Phaser.Math.Between(0,30) ;
+    deadF = this.add.image(-100,-100,'dead');
+    let mumcase = Phaser.Math.Between(0,25) ;
     mumIm = this.add.image(mumcase*16,16, 'mum');
     mumIm.setOrigin(0, 0);
 
@@ -99,24 +101,29 @@ function create()
         loop: 0,
         paused: true
     });
-    minuteur = this.add.text(10,10,counter,{fontFamily: 'Georgia', fontSize : 20, color : '#ffffff'})
+    timer = this.add.text(10,10,counter,{fontFamily: 'Georgia', fontSize : 20, color : '#ffffff'})
 
-    timer = this.time.addEvent({
-        callback: coutdown,
-        callbackScope: this,
+    counterTimer = this.time.addEvent({
         delay: 1000,
-        repeat: 59,
-        paused: false
+        callback : coutdown, 
+        callbackScope : this,
+        repeat: -1,
+        paused: true
     });
     
     titleIm = this.add.image(0,0,"title");
     titleIm.setOrigin(0,0);
     titleIm.setScale(0.7);
-
+    
     playIm = this.add.image(250,250,"play").setInteractive();
     playIm.setScale(0.1)
     playIm.on("pointerdown",startGame);
 
+    coacsont = this.sound.add('coac');
+    smashsont = this.sound.add('smash');
+    traficsont = this.sound.add('trafic');
+    
+    scoretext = this.add.text(150,10,"",{fontFamily: 'Georgia', fontSize : 10, color : '#ffffff'})
    
     down = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.DOWN);
     up = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.UP); 
@@ -132,40 +139,53 @@ function update()
         {
             frogIm.y += 16 ;
             frogIm.setAngle(180);
+            coacsont.play();
         } 
         
         if (Phaser.Input.Keyboard.JustDown(up)&& frogIm.y > 16)
         {
             frogIm.y -= 16 ;
             frogIm.setAngle(0);
+            coacsont.play();
         } 
         if (Phaser.Input.Keyboard.JustDown(left)&& frogIm.x > 16)
         {
             frogIm.x -= 16;
             frogIm.setAngle(-90);
+            coacsont.play();
         } 
         if (Phaser.Input.Keyboard.JustDown(right)&& frogIm.x < 464)
         {
             frogIm.x += 16;
             frogIm.setAngle(90);
+            coacsont.play();
         } 
 
     }
     
-    if(Phaser.Geom.Intersects.RectangleToRectangle(frogIm.getBounds(),mumIm.getBounds() )) tweenHeart.play();
+    if(Phaser.Geom.Intersects.RectangleToRectangle(frogIm.getBounds(),mumIm.getBounds() ))
+    {
+        frogIm.x =  -100;
+        tweenHeart.play();
+        setTimeout(newfrog,1000);
+        savef++;
+
+
+    } 
 
     for (let i = 0;i <60;i++)
     {
-        if(Phaser.Geom.Intersects.RectangleToRectangle(frogIm.getBounds(),carIm[i].getBounds()))
-
-        {
-
-            deadF = this.add.image(frogIm.x,frogIm.y,'dead');
-            frogIm.x =-100;
-            
-        }
         if (i< 30 && carIm[i].x >500) carIm[i].x=-50;
         if (i>30 && carIm[i].x <-50) carIm[i].x=500;
+        if(Phaser.Geom.Intersects.RectangleToRectangle(frogIm.getBounds(),carIm[i].getBounds()))
+        {
+            deadF.setPosition(frogIm.x,frogIm.y);
+            frogIm.x =-100;
+            setTimeout(newfrog,3000);
+            smashsont.play();
+            
+        }
+        
 
     }   
 }
@@ -175,9 +195,27 @@ function startGame()
     titleIm.setVisible(false);
     playIm.setVisible(false);
     onStartScreen = false;
+    counterTimer.paused = false;
+    savef = 0;
+    counter = 60;
+    traficsont.play({loop:true});
 }
 function coutdown()
 {
     counter --;
     timer.text = counter;
+    if(counter ==0) gamOver();
+
+}
+function newfrog()
+{
+    frogIm.setPosition(241,291);
+    deadF.setPosition(-100,-100);
+}
+function gamOver()
+{
+    counterTimer.paused = true;
+    titleIm.setVisible(true);
+    playIm.setVisible(true);
+    scoretext.text ="vous avez sauvez "+savef+" grenouilles"
 }
