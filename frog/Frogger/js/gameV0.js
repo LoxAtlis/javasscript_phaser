@@ -36,8 +36,10 @@ function preload()
     this.load.image('frog', './assets/images/Frog.png');
     this.load.image('mum', './assets/images/MumFrog.png');
     this.load.image('heart', './assets/images/heart.png');
-    this.load.image('car', './assets/images/car.png');
+    this.load.image('car0', './assets/images/car.png');
     this.load.image('dead', './assets/images/deadFrog.png');
+    this.load.image('car1', './assets/images/F1-1.png');
+    this.load.image('car2', './assets/images/snowCar.png');
 }
 
 function create() 
@@ -55,10 +57,24 @@ function create()
         for (let i = 0;i <30;i++)
         {
             let index = i+j*10;
-            let randomSpace = Phaser.Math.Between(-20,+15);
-            carIm[index] = this.physics.add.image(-50+i*50 + randomSpace, 196 + j*32, 'car');
+            let randomSpace = Phaser.Math.Between(-20,+25);
+            let randomCar =Phaser.Math.Between(0,2);
+            carIm[index] = this.physics.add.image(-50+i*50 + randomSpace, 190 + j*32, 'car'+randomCar);
             carIm[index].setOrigin(0,0);
-            carIm[index].setVelocity(35,0);
+            carIm[index].setVelocity(30,0);
+        }
+    }
+    for(let j = 0;j<3;j++){
+
+        for (let i = 0;i <30;i++)
+        {
+            let index = 30+i+j*10;
+            let randomSpace = Phaser.Math.Between(-30,+15);
+            let randomCar =Phaser.Math.Between(0,2);
+            carIm[index] = this.physics.add.image(480 +i*50 + randomSpace, 66 + j*32, 'car'+randomCar);
+            carIm[index].setOrigin(0,0);
+            carIm[index].setAngle(-180);
+            carIm[index].setVelocity(-50,0);
         }
     }
     
@@ -108,7 +124,7 @@ function update()
     
     if(Phaser.Geom.Intersects.RectangleToRectangle(frogIm.getBounds(),mumIm.getBounds() )) tweenHeart.play();
 
-    for (let i = 0;i <30;i++)
+    for (let i = 0;i <50;i++)
     {
         if(Phaser.Geom.Intersects.RectangleToRectangle(frogIm.getBounds(),carIm[i].getBounds()))
 
@@ -118,7 +134,8 @@ function update()
             frogIm.x =-100;
             
         }
-        if (carIm[i].x >500) carIm[i].x=-50;
+        if (i< 30&&carIm[i].x >500) carIm[i].x=-50;
+        if (i>30&&carIm[i].x <-50) carIm[i].x=500;
 
     }   
 }
